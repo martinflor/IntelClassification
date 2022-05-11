@@ -19,22 +19,23 @@ fig, ax1 = plt.subplots()
 
 color = 'tab:red'
 ax1.set_xlabel('Number of epochs')
-ax1.set_ylabel('Loss')
+ax1.set_ylabel('Loss', color = color)
 ax1.set_xticks([1,2,3,4,5])
-ax1.plot(x, losses, color=color)
-ax1.tick_params(axis='y')
+ax1.plot(x, losses, color=color, label = "Loss")
+ax1.tick_params(axis='y', labelcolor = color)
 
 ax2 = ax1.twinx()  # instantiate a second axes that shares the same x-axis
 
 color = 'tab:blue'
 color2 = 'tab:orange'
 ax2.set_ylabel("Training/Test accuracy")  # we already handled the x-label with ax1
-ax2.plot(x, train_acc, color=color)
-ax2.plot(x, test_acc, color = color2)
+ax2.plot(x, train_acc, color=color, label = "TrainAcc")
+ax2.plot(x, test_acc, color = color2, label = "TestAcc")
 ax2.tick_params(axis='y')
 
 fig.tight_layout()  # otherwise the right y-label is slightly clipped
 plt.grid()
+plt.legend(loc = "center right")
 #plt.title("Simple CNN on Intel Image Dataset")
 plt.savefig("Loss-training.svg")
 plt.show()
